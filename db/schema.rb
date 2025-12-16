@@ -10,11 +10,37 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_17_204540) do
+ActiveRecord::Schema.define(version: 2025_12_15_233859) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "uuid-ossp"
+
+  create_table "ah_packages", primary_key: "package_id", id: :uuid, default: nil, force: :cascade do |t|
+    t.string "name"
+    t.string "normalized_name"
+    t.integer "category"
+    t.string "logo_image_id"
+    t.integer "stars"
+    t.boolean "official", default: false
+    t.boolean "cncf"
+    t.text "description"
+    t.string "version"
+    t.string "app_version"
+    t.string "license"
+    t.boolean "deprecated", default: false
+    t.boolean "has_values_schema", default: false
+    t.boolean "signed", default: false
+    t.boolean "all_containers_images_whitelisted", default: false
+    t.integer "production_organizations_count"
+    t.bigint "ts"
+    t.string "repository_url"
+    t.uuid "repository_id"
+    t.boolean "signature_prov", default: false
+    t.boolean "signature_cosign", default: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "buildpacks", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
     t.string "namespace", limit: 250, null: false

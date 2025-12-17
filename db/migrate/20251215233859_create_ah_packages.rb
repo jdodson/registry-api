@@ -6,8 +6,6 @@ class CreateAhPackages < ActiveRecord::Migration[6.1]
       # Top-level fields
       t.string :name
       t.string :normalized_name
-      t.integer :category
-      t.string :logo_image_id
       t.integer :stars
       t.boolean :official, default: false
       t.boolean :cncf
@@ -25,11 +23,13 @@ class CreateAhPackages < ActiveRecord::Migration[6.1]
       # Repository fields (flattened)
       t.string :repository_url
       t.uuid :repository_id
+      t.string :repository_name
+      t.string :repository_display_name
+      t.boolean :repository_verified_publisher
+      t.boolean :repository_official
+      t.string :repository_organization_name
+      t.string :repository_organization_display_name
       
-      # Signatures (boolean columns)
-      t.boolean :signature_prov, default: false
-      t.boolean :signature_cosign, default: false
-
       t.timestamps
     end
   end

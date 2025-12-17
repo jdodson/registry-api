@@ -14,6 +14,11 @@ Rails.application.routes.draw do
       get 'buildpacks/:namespace/:name', to: 'buildpacks#index'
       get 'buildpacks/:namespace/:name/:version', to: 'buildpacks#show',
             :constraints => { :version => /[0-9]+\.[0-9]+\.[0-9]+[0-9A-Za-z\-\.]*/ }
+
+      # Artifact Hub API endpoints
+      get 'repositories/search', to: 'repositories#search'
+      get 'packages/buildpack/:repo_name/:package_name', to: 'packages#show'
+      get 'packages/builder/:repo_name/:package_name', to: 'packages#show'
     end
   end
 end

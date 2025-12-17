@@ -19,8 +19,6 @@ ActiveRecord::Schema.define(version: 2025_12_15_233859) do
   create_table "ah_packages", primary_key: "package_id", id: :uuid, default: nil, force: :cascade do |t|
     t.string "name"
     t.string "normalized_name"
-    t.integer "category"
-    t.string "logo_image_id"
     t.integer "stars"
     t.boolean "official", default: false
     t.boolean "cncf"
@@ -36,8 +34,12 @@ ActiveRecord::Schema.define(version: 2025_12_15_233859) do
     t.bigint "ts"
     t.string "repository_url"
     t.uuid "repository_id"
-    t.boolean "signature_prov", default: false
-    t.boolean "signature_cosign", default: false
+    t.string "repository_name"
+    t.string "repository_display_name"
+    t.boolean "repository_verified_publisher"
+    t.boolean "repository_official"
+    t.string "repository_organization_name"
+    t.string "repository_organization_display_name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

@@ -4,15 +4,11 @@ require 'uri'
 
 def flatten_package(pkg)
   repo = pkg['repository'] || {}
-  security = pkg['security_report_summary'] || {}
-  signatures = pkg['signatures'] || []
 
   {
     package_id: pkg['package_id'],
     name: pkg['name'],
     normalized_name: pkg['normalized_name'],
-    category: pkg['category'],
-    logo_image_id: pkg['logo_image_id'],
     stars: pkg['stars'],
     official: pkg['official'] || false,
     cncf: pkg['cncf'],
@@ -30,10 +26,12 @@ def flatten_package(pkg)
     # Repository fields
     repository_url: repo['url'],
     repository_id: repo['repository_id'],
-  
-    # Signatures
-    signature_prov: signatures.include?('prov'),
-    signature_cosign: signatures.include?('cosign')
+    repository_name: repo['name'],
+    repository_display_name: repo['display_name'],
+    repository_verified_publisher: repo['verified_publisher'],
+    repository_official: repo['official'],
+    repository_organization_name: repo['organization_name'],
+    repository_organization_display_name: repo['organization_display_name']
   }
 end
 

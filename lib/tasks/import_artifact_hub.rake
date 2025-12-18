@@ -8,20 +8,10 @@ def flatten_package(pkg)
   {
     package_id: pkg['package_id'],
     name: pkg['name'],
-    normalized_name: pkg['normalized_name'],
-    stars: pkg['stars'],
-    official: pkg['official'] || false,
-    cncf: pkg['cncf'],
     description: pkg['description'],
     version: pkg['version'],
     app_version: pkg['app_version'],
     license: pkg['license'],
-    deprecated: pkg['deprecated'] || false,
-    has_values_schema: pkg['has_values_schema'] || false,
-    signed: pkg['signed'] || false,
-    all_containers_images_whitelisted: pkg['all_containers_images_whitelisted'] || false,
-    production_organizations_count: pkg['production_organizations_count'],
-    ts: pkg['ts'],
     
     # Repository fields
     repository_url: repo['url'],
@@ -38,6 +28,7 @@ end
 desc "Import packages from Artifact Hub API"
 desc "Usage: rake import_artifact_hub[OFFSET] or OFFSET=1000 rake import_artifact_hub"
 task :import_artifact_hub, [:offset] => :environment do |t, args|
+  #base_url = 'http://localhost:8000/api/v1/packages/search'
   base_url = 'https://artifacthub.io/api/v1/packages/search'
   limit = 60
   offset = (args[:offset] || ENV['OFFSET'] || 0).to_i
@@ -50,6 +41,7 @@ task :import_artifact_hub, [:offset] => :environment do |t, args|
   puts "Starting offset: #{offset}"
 
   loop do
+    # 29 is the kind for buildpacks
     uri = URI("#{base_url}?kind=0&limit=#{limit}&offset=#{offset}")
     
     begin

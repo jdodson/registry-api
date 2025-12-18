@@ -8,7 +8,7 @@ class Api::V1::PackagesController < ApplicationController
     package = AhPackage.where(
       repository_name: package_params[:repo_name],
       name: package_params[:package_name]
-    ).order(ts: :desc).first
+    ).order(created_at: :desc).first
     
     if package.nil?
       render json: { message: "" }, status: :not_found

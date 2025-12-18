@@ -18,20 +18,10 @@ ActiveRecord::Schema.define(version: 2025_12_15_233859) do
 
   create_table "ah_packages", primary_key: "package_id", id: :uuid, default: nil, force: :cascade do |t|
     t.string "name"
-    t.string "normalized_name"
-    t.integer "stars"
-    t.boolean "official", default: false
-    t.boolean "cncf"
     t.text "description"
     t.string "version"
     t.string "app_version"
     t.string "license"
-    t.boolean "deprecated", default: false
-    t.boolean "has_values_schema", default: false
-    t.boolean "signed", default: false
-    t.boolean "all_containers_images_whitelisted", default: false
-    t.integer "production_organizations_count"
-    t.bigint "ts"
     t.string "repository_url"
     t.uuid "repository_id"
     t.string "repository_name"

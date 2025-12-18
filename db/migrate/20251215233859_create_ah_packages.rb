@@ -5,20 +5,10 @@ class CreateAhPackages < ActiveRecord::Migration[6.1]
       
       # Top-level fields
       t.string :name
-      t.string :normalized_name
-      t.integer :stars
-      t.boolean :official, default: false
-      t.boolean :cncf
       t.text :description
       t.string :version
       t.string :app_version
       t.string :license
-      t.boolean :deprecated, default: false
-      t.boolean :has_values_schema, default: false
-      t.boolean :signed, default: false
-      t.boolean :all_containers_images_whitelisted, default: false
-      t.integer :production_organizations_count
-      t.bigint :ts
       
       # Repository fields (flattened)
       t.string :repository_url

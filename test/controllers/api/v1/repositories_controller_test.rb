@@ -23,7 +23,7 @@ class Api::V1::RepositoriesControllerTest < ActionDispatch::IntegrationTest
     assert result[0]['available_versions'].is_a?(Array)
     if result[0]['available_versions'].length > 0
       assert result[0]['available_versions'][0].key?('version')
-      assert result[0]['available_versions'][0].key?('ts')
+      assert result[0]['available_versions'][0].key?('app_version')
     end
   end
 

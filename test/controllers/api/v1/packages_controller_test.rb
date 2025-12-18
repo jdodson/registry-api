@@ -56,7 +56,7 @@ class Api::V1::PackagesControllerTest < ActionDispatch::IntegrationTest
     assert result["available_versions"].is_a?(Array)
     if result["available_versions"].length > 0
       assert result["available_versions"][0].key?("version")
-      assert result["available_versions"][0].key?("ts")
+      assert result["available_versions"][0].key?("app_version")
     end
   end
 
@@ -64,7 +64,7 @@ class Api::V1::PackagesControllerTest < ActionDispatch::IntegrationTest
     get "/api/v1/packages/buildpack/test-repo/test-package"
     assert_response :success
     result = JSON.parse(response.body)
-    # Should return version 2.0.0 (latest based on ts)
+    # Should return version 2.0.0 (latest based on created_at)
     assert_equal "2.0.0", result["version"]
   end
 end

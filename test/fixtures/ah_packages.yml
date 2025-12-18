@@ -1,7 +1,6 @@
 one:
   package_id: "550e8400-e29b-41d4-a716-446655440000"
   name: "test-package"
-  normalized_name: "test-package"
   repository_name: "test-repo"
   repository_display_name: "Test Repository"
   repository_url: "https://example.com/repo"
@@ -13,14 +12,11 @@ one:
   version: "1.0.0"
   app_version: "v1.0.0"
   description: "Test package description"
-  stars: 100
-  official: true
-  ts: 1609459200
+  created_at: <%= 2.days.ago %>
 
 two:
   package_id: "550e8400-e29b-41d4-a716-446655440002"
   name: "test-package"
-  normalized_name: "test-package"
   repository_name: "test-repo"
   repository_display_name: "Test Repository"
   repository_url: "https://example.com/repo"
@@ -32,14 +28,11 @@ two:
   version: "2.0.0"
   app_version: "v2.0.0"
   description: "Test package description v2"
-  stars: 150
-  official: true
-  ts: 1612137600
+  created_at: <%= 1.day.ago %>
 
 three:
   package_id: "550e8400-e29b-41d4-a716-446655440003"
   name: "another-package"
-  normalized_name: "another-package"
   repository_name: "another-repo"
   repository_display_name: "Another Repository"
   repository_url: "https://example.com/another"
@@ -51,7 +44,4 @@ three:
   version: "1.5.0"
   app_version: "v1.5.0"
   description: "Another package"
-  stars: 50
-  official: false
-  ts: 1609459200
 

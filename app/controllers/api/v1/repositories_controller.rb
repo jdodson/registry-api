@@ -12,8 +12,8 @@ class Api::V1::RepositoriesController < ApplicationController
     if search_params[:q].present?
       search_term = "%#{search_params[:q]}%"
       query = query.where(
-        "repository_name ILIKE ? OR repository_display_name ILIKE ? OR repository_organization_name ILIKE ?",
-        search_term, search_term, search_term
+        "repository_name ILIKE ? OR repository_display_name ILIKE ? OR repository_organization_name ILIKE ? OR name ILIKE ? OR normalized_name ILIKE ?",
+        search_term, search_term, search_term, search_term, search_term
       )
     end
     

@@ -51,5 +51,18 @@ class Api::V1::RepositoriesControllerTest < ActionDispatch::IntegrationTest
     assert result.is_a?(Array)
     assert_equal 0, result.length
   end
+
+  test "should search by package name" do
+    get "/api/v1/repositories/search?q=test-package"
+    assert_response :success
+    result = JSON.parse(response.body)
+    assert result.is_a?(Array)
+    # Should find test-repo because it contains test-package
+    repo_names = result.map { |r| r['repository']['name'] }
+    assert_includes repo_names, 'test-repo'
+    # Verify the package name is in the results
+    package_names = result.map { |r| r['name'] }
+    assert_includes package_names, 'test-package'
+  end
 end
 
